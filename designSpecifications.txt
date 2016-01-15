@@ -81,4 +81,5 @@ File Structure
 
 Consistent attempt has been made to ensure that variable nomenclature are selfExplanatory
 Design approach was taken with the idea to maintain all states in the backend and client can push/pull data accordingly
-Since, its a simple project, client messages have not been encrypted, but the extension should not be tough
+Since, its a simple project, client calls have not been encrypted, but the extension should not be tough
+Whenever user is behaving unexpectedly, and I was not sure what to return, I have raised a window alert to let user know

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('tableController', function($location,$scope, $routeParams, $http, Table) {
+app.controller('tableController', function($location,$scope, $routeParams, $http, Table, User) {
       var tableId = $routeParams.tableId;
       $scope.currentTable = null;
       $scope.tablePlayers = null;
@@ -17,12 +17,12 @@ app.controller('tableController', function($location,$scope, $routeParams, $http
 
       function addUserPlayer(returnObject){
             $scope.currentTable = returnObject[0];
-            $scope.tablePlayers[Object.keys($scope.tablePlayers).length] = returnObject[1];
+            $scope.tablePlayers[Object.keys($scope.tablePlayers).length+1] = returnObject[1];
             $location.path('/player/table/'+$scope.currentTable.id);
       };
 
       $scope.addPlayer = function(tableId){
-            Table.addUser($scope.currentTable,addUserPlayer);
+            User.joinTable($scope.currentTable,addUserPlayer);
       };
 
       $scope.switchToCasinoView = function(){

@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('casinoController', 
-	function($location,$scope, $http, Table, Casino) {
+	function($location,$scope, $http, Table, Casino, userSeated) {
       $scope.players=null;
       $scope.tables=null;
       Casino.getAllPlayers(setPlayers);

@@ -29,7 +29,7 @@ app.factory('Table', function ($q, $timeout, $http, $rootScope, $location) {
                   if(status === 200 && Object.keys(data).length>0){
                         callBack(data);
                   }else{
-                        window.alert("error. No table players");
+                        window.alert("No table players!!!");
                         callBack(data);
                   }
             }).error(function(data,status){
@@ -52,7 +52,7 @@ app.factory('Table', function ($q, $timeout, $http, $rootScope, $location) {
 		addPlayer: function(table,player,callBack){
 			$http.post('/api/addPlayer',{'tableId':table.id,'playerId':player.id}).success(function(data,status){
 				if(status===200 && data.result=='success'){
-					table.players[Object.keys(table.players).length]=player.id;
+					table.players[Object.keys(table.players).length+1]=player.id;
 					player.table=table.id;
 					player.sitting=true;
 					callBack([table,player]);
@@ -83,18 +83,6 @@ app.factory('Table', function ($q, $timeout, $http, $rootScope, $location) {
 					window.alert(data.result);
 				}
 			}).error(function(data,status){
-				window.alert("error. Please try again");
-			});
-		},
-		addUser: function(table,callBack){
-			$http.post('/api/addUser',{'tableId':table.id}).success(function (data, status) {
-                  if(status === 200 && Object.keys(data).length>0){
-                  		table.players[Object.keys(table.players).length]=data.id;
-                        callBack([table,data]);
-                  }else{
-                        window.alert("failed to add/seat user");
-                  }
-            }).error(function(data,status){
 				window.alert("error. Please try again");
 			});
 		}

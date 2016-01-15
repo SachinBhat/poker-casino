@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 tables=[]   #list of poker tables
 for i in xrange(3):
-    table={'id':i,'minBet':5,'playerCount':0,'players':[],'pot':0,'currMaxBet':0}
+    table={'id':i,'minBet':5,'players':[],'pot':0,'currMaxBet':0}
     tables.append(table)
 
 players=[] #list of players in casino. userid 0 is user and rest bots
@@ -79,7 +79,6 @@ def addPlayer():
     try:
         table = tables[t]
         table['players'].append(p)
-        table['playerCount']+=1
         players[p]['sitting']=True
         players[p]['table']=t
         status='success'
@@ -95,7 +94,6 @@ def removePlayer():
     try:
         table = tables[t]
         table['players'].remove(p)
-        table['playerCount']-=1
         players[p]['table'] = -1
         players[p]['sitting']=False
         players[p]['lastHand']="not Started"
@@ -108,15 +106,24 @@ def removePlayer():
         status="Failed to remove/unseat player,try again"
     return jsonify({'result':status})
 
-@app.route('/api/addUser',methods=['POST'])
-def addUser():
+
+'''
+Player/User apis
+'''
+
+@app.route('/api/getUserTable')
+def getUserTable():
+    return jsonify({'tableId':players[0]['table']})
+
+
+@app.route('/api/joinTable',methods=['POST'])
+def joinTable():
     json_data = request.json
     t = int(json_data['tableId'])
     try:
         table = tables[t]
         p=0
         table['players'].append(p)
-        table['playerCount']+=1
         players[p]['sitting']=True
         players[p]['table']=t
         result = players[p]
@@ -124,6 +131,24 @@ def addUser():
         result = {}
     return jsonify(result)
 
+@app.route('/api/leaveTable')
+def leaveTable():
+    p = 0
+    t = players[p]['table']
+    try:
+        table = tables[t]
+        table['players'].remove(p)
+        players[p]['table'] = -1
+        players[p]['sitting']=False
+        players[p]['lastHand']="not Started"
+        players[p]['lastResult']="not Started"
+        players[p]['gameCall']="notFold"
+        players[p]['currentHand']=[]
+        players[p]['bet']=0
+        status='success'
+    except:
+        status="Failed to remove/unseat user,try again"
+    return jsonify({'result':status})
 
 '''
 casino apis

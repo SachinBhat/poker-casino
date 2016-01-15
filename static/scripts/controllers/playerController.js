@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('playerController', function($location,$scope, $routeParams,$q, $timeout, $http, Table) {
+app.controller('playerController', function($location,$scope, $routeParams,$q, $timeout, $http, Table,User) {
       var tableId = $routeParams.tableId;
       $scope.tableId = tableId;
       $scope.cameFrom = $routeParams.cameFrom;
@@ -36,7 +36,7 @@ app.controller('playerController', function($location,$scope, $routeParams,$q, $
             if($scope.dealStatus){
                   $scope.makeFold();
             }
-            Table.removePlayer($scope.currentTable,$scope.player,setPlayerTable);       
+            User.leaveTable($scope.currentTable,setPlayerTable);       
       };
 
       function setPlayerTable(returnObject){
@@ -124,13 +124,13 @@ app.controller('playerController', function($location,$scope, $routeParams,$q, $
             }
       };
 
-      $scope.updateRepeat = function(){ //in case of fatal update error in Table.updateTablePlayers. Not sure how this can happen, but taing care of all cases
+      $scope.updateRepeat = function(){ 
             if($scope.notUpdatedTableScores){
                   Table.updateTablePlayers($scope.tablePlayers,resetPlayers);
             }
       }
 
-      $scope.updateTableRepeat = function(){ //in case of fatal update error in Table.updateTable. Not sure how this can happen, but taing care of all cases
+      $scope.updateTableRepeat = function(){ 
             if($scope.notUpdatedTable){
                   Table.updateTable($scope.currentTable,checkTableUpdate); 
             }
