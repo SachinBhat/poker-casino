@@ -15,36 +15,7 @@ Data Schema
 2 DBs in backend(stored as simple python objects) one each for players and tables
 
 Class Structure
-Player class
-	int id
-	String name
-	Double funds
-	boolean sitting
-	int table
-	String lastResult
-	String[] lastHand
-	double bet
-	String[] currentHand
-	int buyIns
-	String gameCall - possible Values{notfold,fold}
-
-	_init_()
-		player={'id':i,'name':'bot','funds':1000,'sitting':False,'table':-1,'lastResult':'not Started',
-    'lastHand':'not Started','bet':0,'currentHand':[],'buyIns':1,'gameCall':'notFold'}
-
-
-Casino class (configuration hardcoded)
-	List[] players
-	List[] tables
-
-	_init_()
-		configuration hardcoded
-
-	functions
-		getAllPlayers()
-		getAllTables()
-		isUserSeated() //to  check for transfer of power/view/url from casino to table/player
-
+	
 Table class
 	int it
 	int minBet
@@ -69,6 +40,39 @@ Table class
 		secondBts()
 		showDown()
 		findWinner()
+
+Casino class 
+	List[] players
+	List[] tables
+
+	_init_()
+		configuration hardcoded
+
+	functions
+		getAllPlayers()
+		getAllTables()
+
+User/Player class
+	int id
+	String name
+	Double funds
+	boolean sitting
+	int table
+	String lastResult
+	String[] lastHand
+	double bet
+	String[] currentHand
+	int buyIns
+	String gameCall - possible Values{notfold,fold}
+
+	_init_()
+		player={'id':i,'name':'bot','funds':1000,'sitting':False,'table':-1,'lastResult':'not Started',
+    'lastHand':'not Started','bet':0,'currentHand':[],'buyIns':1,'gameCall':'notFold'}
+
+    functions
+    	getUserTable()
+    	joinTable()
+    	leaveTable()
 
 File Structure
 	FrontEnd(angularJS)
