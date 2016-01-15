@@ -17,7 +17,7 @@ Data Schema
 Class Structure
 	
 Table class
-	int it
+	int id
 	int minBet
 	int[] players - id of players sitting in this table
 	Double pot
