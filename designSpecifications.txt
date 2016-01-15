@@ -2,7 +2,7 @@ To know the project objectives, open ReadMe.md
 
 Casino Rules/Assumptions
 
-15 Players. 14 bots and 1 user
+10 Players. 9 bots and 1 user
 3 tables
 minimum bet(ante) - $5
 Players start with initial buy in of $1000

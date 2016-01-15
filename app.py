@@ -9,7 +9,7 @@ for i in xrange(3):
     tables.append(table)
 
 players=[] #list of players in casino. userid 0 is user and rest bots
-for i in xrange(15):
+for i in xrange(10):
     player={'id':i,'name':'bot','funds':1000,'sitting':False,'table':-1,'lastResult':'not Started',
     'lastHand':'not Started','bet':0,'currentHand':[],'buyIns':1,'gameCall':'notFold'}
     if(i==0):
