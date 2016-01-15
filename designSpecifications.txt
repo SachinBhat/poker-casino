@@ -79,11 +79,11 @@ File Structure
 		1 index html file
 		1 app module
 		3 Views (Casino,table,player)
-		3 controllers supported by 2 services
+		3 controllers supported by 3 services
 	Backend
 		1 python flask server file
 
 Consistent attempt has been made to ensure that variable nomenclature are selfExplanatory
 Design approach was taken with the idea to maintain all states in the backend and client can push/pull data accordingly
 Since, its a simple project, client calls have not been encrypted, but the extension should not be tough
-Whenever user is behaving unexpectedly, and I was not sure what to return, I have raised a window alert to let user know
+Whenever user is behaving unexpectedly, and I was not sure what to return, I have prevented the action and raised a window alert to let user know
