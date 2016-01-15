@@ -1,0 +1,27 @@
+<div ng-cloak>
+<h3>Casino View</h3>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="update game scores" ng-if="notUpdatedTableScores" ng-click="updateRepeat()">
+    Unseated Players:
+    <br>
+    id&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;funds&nbsp;&nbsp;&nbsp;&nbsp;table to seat
+    <div ng-repeat="p in players track by $index" ng-if="p.sitting==false">
+      {{p.id}}&nbsp;&nbsp;{{p.name}}&nbsp;&nbsp;{{p.funds}} &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="number" min="0" max="2" ng-model="tableId" value="0" name="table no">&nbsp;<input type="submit" value="seat user" ng-click="addPlayer(p.id,tableId)">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    Tables:
+    <br>
+    <div ng-repeat="t in tables">
+        Table {{t.id}} &nbsp;&nbsp;&nbsp; <input type="submit" value="Deal" ng-click="deal(t.id)"> 
+        &nbsp;&nbsp;&nbsp; <input type="submit" value="view table" ng-click="switchToTableView(t.id)">
+        <div ng-repeat="p in t.players track by $index" ng-if="players[p].sitting==true">
+        {{players[p].id}} : {{players[p].name}} : {{players[p].funds}} &nbsp;&nbsp;&nbsp; <input type="submit" value="unseat user" ng-click="removePlayer(players[p].id,t.id)">
+        </div>
+        <br>
+        <br><br><br>
+    </div>
+
+</div>

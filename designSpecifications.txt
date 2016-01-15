@@ -1,0 +1,84 @@
+To know the project objectives, open ReadMe.md
+
+Casino Rules/Assumptions
+
+15 Players. 14 bots and 1 user
+3 tables
+minimum bet(ante) - $5
+Players start with initial buy in of $1000
+No upper limit on bot buy ins. user has single buy in of $1000 per server run
+user can sit and play at a table alone. he will always win and will make no profit
+No raise in second round of bets. Only call/fold is allowed
+Bots bet based on the money they have and the money in the pot. Not based on cards.
+
+Data Schema
+2 DBs in backend(stored as simple python objects) one each for players and tables
+
+Class Structure
+Player class
+	int id
+	String name
+	Double funds
+	boolean sitting
+	int table
+	String lastResult
+	String[] lastHand
+	double bet
+	String[] currentHand
+	int buyIns
+	String gameCall - possible Values{notfold,fold}
+
+	_init_()
+		player={'id':i,'name':'bot','funds':1000,'sitting':False,'table':-1,'lastResult':'not Started',
+    'lastHand':'not Started','bet':0,'currentHand':[],'buyIns':1,'gameCall':'notFold'}
+
+
+Casino class (configuration hardcoded)
+	List[] players
+	List[] tables
+
+	_init_()
+		configuration hardcoded
+
+	functions
+		getAllPlayers()
+		getAllTables()
+		isUserSeated() //to  check for transfer of power/view/url from casino to table/player
+
+Table class
+	int it
+	int minBet
+	int[] players - id of players sitting in this table
+	Double pot
+	Double currMaxBet
+
+	_init_()
+		table={'id':i,'minBet':5,'players':[],'pot':0,'currMaxBet':0}
+
+	functions
+		getTable() //push table to client side
+		updateTable()
+		getTablePlayers()
+		updateTablePlayers()
+		addPlayer()
+		removePlayer()
+		
+		(only client side functions relating to game and card deck)
+		deal()
+		firstBets()
+		secondBts()
+		showDown()
+		findWinner()
+
+File Structure
+	FrontEnd(angularJS)
+		1 index html file
+		1 app module
+		3 Views (Casino,table,player)
+		3 controllers supported by 2 services
+	Backend
+		1 python flask server file
+
+Consistent attempt has been made to ensure that variable nomenclature are selfExplanatory
+Design approach was taken with the idea to maintain all states in the backend and client can push/pull data accordingly
+Since, its a simple project, client messages have not been encrypted, but the extension should not be tough

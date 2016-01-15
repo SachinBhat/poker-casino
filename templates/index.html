@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokerCasino">
+	<head>
+		<meta charset="utf-8" />
+		<title>Poker Casino 2016!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
+		<script src="/static/scripts/app.js"></script>
+	</head>
+	<body>
+		<h1> Welcome to Casino 2016!</h1>
+		<br>
+		<br>
+		<div ng-view></div>
+		<script src="/static/scripts/controllers/casinoController.js"></script>
+		<script src="/static/scripts/controllers/tableController.js"></script>
+		<script src="/static/scripts/controllers/playerController.js"></script>
+		<script src="/static/scripts/services/casino.js"></script>
+		<script src="/static/scripts/services/table.js"></script>
+		<script src="/static/scripts/services/player.js"></script>
+	</body>
+</html>

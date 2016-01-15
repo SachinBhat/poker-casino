@@ -1,0 +1,14 @@
+<div ng-cloak>
+<h3>Table View</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="update game scores" ng-if="notUpdatedTableScores" ng-click="updateRepeat()">
+
+Table {{currentTable.id}} &nbsp;&nbsp;&nbsp; <input type="submit" value="Deal" ng-click="deal(currentTable.id)"> 
+	&nbsp;&nbsp;&nbsp; <input type="submit" value="Seat user" ng-if"player.sitting==false" ng-click="addPlayer(currentTable.id)"> 
+    <div ng-repeat="p in tablePlayers track by $index">
+    {{p.id}} : {{p.name}} : {{p.funds}} &nbsp; {{p.lastResult}} &nbsp; {{p.lastHand}} 
+    </div>
+    <br>
+    <br>
+    <br>
+    <input type="submit" value="view casino" ng-click="switchToCasinoView()">
+
+</div>

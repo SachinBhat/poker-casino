@@ -1,0 +1,18 @@
+<div ng-cloak>
+<h3>Player View</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="update game scores" ng-if="notUpdatedTableScores" ng-click="updateRepeat()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="update Table" ng-if="notUpdatedTable" ng-click="updateTableRepeat()">
+
+Table {{currentTable.id}}&nbsp;&nbsp;<span ng-if="currentTable.currMaxBet!=0">Max Bet: {{currentTable.currMaxBet}}</span> &nbsp;&nbsp;&nbsp; <input type="submit" value="Deal" ng-if="showDown" ng-click="deal(tableId)"> 
+    <div ng-repeat="p in tablePlayers track by $index">
+    {{p.id}} : {{p.name}} : {{p.funds}} &nbsp; {{p.lastResult}} &nbsp; <span ng-if="p.name=='user' || showDown">{{p.currentHand}}</span>
+    </div>
+    <br>
+    <br>
+    <br>
+    <input type="number" ng-if="currentTable.pot==0 && dealStatus" ng-model="user.userBet" value="Bet Amt" name="user bet"><input type="submit" ng-if="currentTable.pot==0 && dealStatus" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="Bet(only number input)" ng-click="makeBet(user.userBet)">&nbsp;<input type="submit" ng-if="currentTable.pot!=0" value="Call" ng-click="makeCall()">
+    <br>
+    &nbsp;<input type="submit" ng-if="dealStatus" value="Fold" ng-click="makeFold()">
+    <br>
+    <br>
+    <input type="submit" ng-if"player.sitting==true" value="Leave Table" ng-click="removeUser()">
+    
+</div>
