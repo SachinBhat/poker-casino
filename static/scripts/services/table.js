@@ -52,7 +52,9 @@ app.factory('Table', function ($q, $timeout, $http, $rootScope, $location) {
 		addPlayer: function(table,player,callBack){
 			$http.post('/api/addPlayer',{'tableId':table.id,'playerId':player.id}).success(function(data,status){
 				if(status===200 && data.result=='success'){
+					//window.alert("players before "+table.players);
 					table.players[Object.keys(table.players).length+1]=player.id;
+					//window.alert("players after "+table.players);
 					player.table=table.id;
 					player.sitting=true;
 					callBack([table,player]);
