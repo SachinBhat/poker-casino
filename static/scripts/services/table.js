@@ -287,7 +287,7 @@ app.factory('Table', function ($q, $timeout, $http, $rootScope, $location) {
 
 	    if ( combination == 0 ) {           // Don't check further if we've already won
 	        if ( fours > 0 ) {
-	            combination=8; //four of a kind
+	            combination=7; //four of a kind
 	        }
 	        else if ( threes == 1 && pairs == 1 ) {
 	            combination=6; //full house

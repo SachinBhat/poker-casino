@@ -34,4 +34,18 @@ describe('tableService tests', function (){
     expect(result).toBe(9);
   });
 
+  it('poker hand combination tests - 2 pairs', function (){
+    var result = table.handCombination(['TC','TD','QC','QD','AC']);
+    expect(result).toBe(2);
+  });
+
+  it('poker hand combination tests - threes', function (){
+    var result = table.handCombination(['TC','TD','TH','KC','AC']);
+    expect(result).toBe(3);
+  });
+
+  it('poker hand combination tests - flush', function (){
+    var result = table.handCombination(['TC','6C','QC','KC','AC']);
+    expect(result).toBe(5);
+  });
 });
